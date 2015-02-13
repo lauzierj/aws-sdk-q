@@ -1,6 +1,6 @@
-# aws-sdk-promise
+# aws-sdk-q
 
-Hack for adding the .promise() method to all aws-sdk request objects (aws-sdk is a peerDependency).
+Hack for adding the .q() method to all aws-sdk request objects (aws-sdk is a peerDependency).
 
 ## How it works?
 
@@ -13,19 +13,18 @@ all api calls).
 ```js
 // AWS is identical to aws-sdk but it has .promise method on all
 // requests
-var AWS = require('aws-sdk-promise');
+var AWS = require('aws-sdk-q');
 var ec2 = new AWS.EC2({ region: 'us-west-2' });
 
-ec2.describeAccountAttributes({}).promise().then(
-  function(req) {
+ec2.describeAccountAttributes({}).promise()
+  .then(function(data) {
     // the promise is resolved on the 'complete' event of request object
     console.log(JSON.stringify(req.data, null, 2));
-  },
-  function(error) {
+  })
+  .catch(function(error) {
     // rejected if the 'complete' event contains an error
     console.log(error);
-  }
-);
+  });
 
 ```
 
