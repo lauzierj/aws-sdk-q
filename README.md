@@ -11,12 +11,12 @@ all api calls).
 ## Usage
 
 ```js
-// AWS is identical to aws-sdk but it has .promise method on all
+// AWS is identical to aws-sdk but it has .q method on all
 // requests
 var AWS = require('aws-sdk-q');
 var ec2 = new AWS.EC2({ region: 'us-west-2' });
 
-ec2.describeAccountAttributes({}).promise()
+ec2.describeAccountAttributes({}).q()
   .then(function(data) {
     // the promise is resolved on the 'complete' event of request object
     console.log(JSON.stringify(req.data, null, 2));
